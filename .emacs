@@ -1,8 +1,13 @@
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+;; Marmalade package archive
+(require 'package)
+(add-to-list 'package-archives
+    '("marmalade" . "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
+;;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (load-theme 'solarized-dark t)
 ;; Or alternate color palette
 ;; (load-theme 'solarized-light t)
-
 ;;(load-theme 'zenburn t)
 
 
@@ -28,6 +33,9 @@
 ;; Save all backup files in this directory
 (setq backup-directory-alist (quote ((".*" . "~/.emacs_backups/"))))
 
+;; Highlight current line
+(global-hl-line-mode +1)
+
 
 ;; Below from http://www-cdf.fnal.gov/~sthrlnd/emacs_help.html
 
@@ -37,8 +45,8 @@
 (column-number-mode 1)
 
 ;; turn on paren matching
-    (show-paren-mode t)
-    (setq show-paren-style 'mixed)
+(show-paren-mode t)
+(setq show-paren-style 'mixed)
 
 ;; Use "y or n" answers instead of full words "yes or no"
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -49,7 +57,7 @@
 ;; Possibly fixing un/redo: http://www.emacswiki.org/RedoMode
 
 ; make file name and computer title
-(set-default 'frame-title-format 
+(set-default 'frame-title-format
              (list "" "emacs" "@" (getenv "HOST") " : %f" ))
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
